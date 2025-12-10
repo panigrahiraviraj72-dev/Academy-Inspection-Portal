@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Academic Inspection Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <div class="logo-circle">AIP</div>
+    <div class="title-block">
+        <h1>Academic Inspection Portal</h1>
+        <p>Generate DTE, GTU &amp; NBA reports from a single input form</p>
+    </div>
+</header>
+
+<main class="container">
+
+    
+    <section class="card form-card">
+        <h2>Enter Common Institute Data</h2>
+        <p class="subtitle">Fill the details once and get formatted reports for different authorities.</p>
+
+        <form id="dataForm" onsubmit="event.preventDefault(); generateReports();">
+            <div class="field">
+                <label for="instituteName">Institute Name <span>*</span></label>
+                <input id="instituteName" type="text" placeholder="e.g. ABC Institute of Technology" required>
+            </div>
+
+            <div class="field">
+                <label for="principal">Principal Name <span>*</span></label>
+                <input id="principal" type="text" placeholder="e.g. Dr. J. P. Sharma" required>
+            </div>
+
+            <div class="field field-inline">
+                <div>
+                    <label for="students">Total Students <span>*</span></label>
+                    <input id="students" type="number" min="1" placeholder="e.g. 850" required>
+                </div>
+                <div>
+                    <label for="collegeCode">College Code (GTU) <span>*</span></label>
+                    <input id="collegeCode" type="text" placeholder="e.g. 123" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="program">Program Name (NBA) <span>*</span></label>
+                <input id="program" type="text" placeholder="e.g. Diploma in ECE" required>
+            </div>
+
+            <div id="errorBox" class="error-box" hidden></div>
+
+            <div class="button-row">
+                <button type="submit" class="btn primary">Generate Reports</button>
+                <button type="button" class="btn ghost" onclick="resetForm()">Reset</button>
+            </div>
+        </form>
+    </section>
+
+    
+    <section class="card preview-card">
+        <h2>Live Report Preview</h2>
+        <p class="subtitle">Reports will update automatically as you type after first generation.</p>
+
+        <div class="tabs">
+            <button class="tab-button active" data-target="dte">DTE Report</button>
+            <button class="tab-button" data-target="gtu">GTU Report</button>
+            <button class="tab-button" data-target="nba">NBA Report</button>
+        </div>
+
+        <div class="tab-content active" id="dteTab">
+            <div class="tab-header">
+                <h3>DTE Format</h3>
+                <button class="btn small" type="button" onclick="copyReport('dte')">Copy Text</button>
+            </div>
+            <pre id="dte" class="code-box">// DTE report will appear here</pre>
+        </div>
+
+        <div class="tab-content" id="gtuTab">
+            <div class="tab-header">
+                <h3>GTU Format</h3>
+                <button class="btn small" type="button" onclick="copyReport('gtu')">Copy Text</button>
+            </div>
+            <pre id="gtu" class="code-box">// GTU report will appear here</pre>
+        </div>
+
+        <div class="tab-content" id="nbaTab">
+            <div class="tab-header">
+                <h3>NBA Format</h3>
+                <button class="btn small" type="button" onclick="copyReport('nba')">Copy Text</button>
+            </div>
+            <pre id="nba" class="code-box">// NBA report will appear here</pre>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>Academic Inspection Portal &copy; 2025 &middot; Project by [RAVIRAJ PANIGRAHI]</p>
+</footer>
+
+<div id="toast" class="toast" hidden>Copied to clipboard!</div>
+
+<script src="script.js"></script>
+</body>
+</html>
